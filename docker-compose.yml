@@ -2,13 +2,13 @@ version: '3'
 
 services:
  awesome:
-  image: awesome
+  image: gitimage
   ports:
     - 8080
   environment:
     - SERVICE_PORTS=8080
   deploy:
-    replicas: 10
+    replicas: 5
     update_config:
       parallelism: 5
       delay: 10s
@@ -22,7 +22,7 @@ services:
  proxy:
    image: dockercloud/haproxy
    depends_on:
-     - awesome
+     - gitimage
    environment:
      - BALANCE=leastconn
    volumes:
